@@ -4,12 +4,18 @@ import numpy as np
 import joblib
 
 # Load saved artifacts
-model = joblib.load('../models/ipl_model.pkl')
-scaler = joblib.load('../models/ipl_scaler.pkl')
-encoders = joblib.load('../models/ipl_encoders.pkl')
-features = joblib.load('../models/ipl_features.pkl')
-all_teams = joblib.load('../models/ipl_teams.pkl')
-all_cities = joblib.load('../models/ipl_cities.pkl')
+import os
+
+# Get absolute path to models folder regardless of where app runs from
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODELS_DIR = os.path.join(BASE_DIR, 'models')
+
+model = joblib.load(os.path.join(MODELS_DIR, 'ipl_model.pkl'))
+scaler = joblib.load(os.path.join(MODELS_DIR, 'ipl_scaler.pkl'))
+encoders = joblib.load(os.path.join(MODELS_DIR, 'ipl_encoders.pkl'))
+features = joblib.load(os.path.join(MODELS_DIR, 'ipl_features.pkl'))
+all_teams = joblib.load(os.path.join(MODELS_DIR, 'ipl_teams.pkl'))
+all_cities = joblib.load(os.path.join(MODELS_DIR, 'ipl_cities.pkl'))
 
 # Active IPL teams (filter out defunct ones)
 active_teams = [
